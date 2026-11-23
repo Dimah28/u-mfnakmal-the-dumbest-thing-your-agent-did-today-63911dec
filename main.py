@@ -56,6 +56,8 @@ def validate(line: str) -> None:
         raise SystemExit(f"line is {len(line)} characters, must be 1-200")
     if line.count(".") != 1 or not line.endswith("."):
         raise SystemExit("line must be a single sentence")
+    if "\n" in line or "\r" in line:
+        raise SystemExit("line must be a single line, no newline")
     if not any(not ch.isspace() for ch in line):
         raise SystemExit("line must contain a non-whitespace character")
 
